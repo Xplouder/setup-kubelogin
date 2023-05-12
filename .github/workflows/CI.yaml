@@ -14,9 +14,13 @@ jobs:
   kustomize-builds:
     name: test kustomize builds
     runs-on: [ 'ubuntu-latest' ]
+    matrix:
+      Kubelogin-version: [ 'v1.27.0', 'v1.26.0', 'v1.25.4', 'v1.24.0' ]
     steps:
       - name: Check out code
         uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3
 
       - name: Try to install Kubelogin
         uses: ./
+        with:
+          version: ${{ matrix.Kubelogin-version }}
