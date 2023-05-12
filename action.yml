@@ -10,7 +10,6 @@ runs:
     - name: Setup Kubelogin
       shell: bash
       run: |
-        set -eu
         curl -LO "https://github.com/int128/kubelogin/releases/download/${{ inputs.version }}/kubelogin_linux_amd64.zip"
         unzip -j "kubelogin_linux_amd64.zip" -d /tmp/kubelogin
         mkdir -p "$HOME/bin"
