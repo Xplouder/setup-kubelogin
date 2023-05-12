@@ -7,11 +7,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Download Kubelogin
+    - name: Setup Kubelogin
       uses: bash
       run: |
         curl -LO "https://github.com/int128/kubelogin/releases/download/${{ inputs.version }}/kubelogin_linux_amd64.zip"
         unzip -j "kubelogin_linux_amd64.zip" -d /tmp/kubelogin
-        sudo mv /tmp/kubelogin/kubelogin /usr/local/bin/kubectl-oidc_login
+        mkdir -p "$HOME/bin"
+        sudo mv /tmp/kubelogin/kubelogin $HOME/bin/kubectl-oidc_login
+        export PATH="$HOME/bin:$PATH"
         rm -f "kubelogin_linux_amd64.zip"
         kubectl oidc-login --version
