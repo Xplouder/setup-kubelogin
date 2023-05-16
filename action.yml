@@ -1,5 +1,8 @@
-name: 'Setup Kubelogin'
+name: "Setup kubectl plugin 'Kubelogin'"
 description: 'Install Kubelogin with a specific version'
+branding:
+  icon: 'log-in'
+  color: 'blue'
 inputs:
   version:
     description: 'version of Kubelogin binary'
