@@ -6,16 +6,10 @@ This action sets up [kubelogin](https://github.com/int128/kubelogin) for use in 
 
 ## `version`
 
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-## `time`
-
-The time we greeted you.
+Version of Kubelogin binary. Default `v1.27.0`.
 
 ## Example usage
 
 uses: xplouder/setup-kubelogin@v1
 with:
-  version: 'Mona the Octocat'
+  version: 'v1.25.4'
