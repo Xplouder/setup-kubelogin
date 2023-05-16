@@ -1,0 +1,19 @@
+name: 'Setup Kubelogin'
+description: 'Install Kubelogin with a specific version'
+inputs:
+  version:
+    description: 'version of Kubelogin binary'
+    default: 'v1.27.0'
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Kubelogin
+      shell: bash
+      run: |
+        curl -LO "https://github.com/int128/kubelogin/releases/download/${{ inputs.version }}/kubelogin_linux_amd64.zip"
+        unzip -j "kubelogin_linux_amd64.zip" -d /tmp/kubelogin
+        mkdir -p "$HOME/bin"
+        sudo mv /tmp/kubelogin/kubelogin $HOME/bin/kubectl-oidc_login
+        export PATH="$HOME/bin:$PATH"
+        rm -f "kubelogin_linux_amd64.zip"
+        kubectl oidc-login --version
