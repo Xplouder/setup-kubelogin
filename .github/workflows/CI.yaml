@@ -1,18 +1,16 @@
 name: CI
 
 on:
-  #TODO: remove this event trigger once we have a proper release process
-  push:
-#  pull_request:
-#    types: [ opened, synchronize, reopened ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  kustomize-builds:
-    name: test kustomize builds
+  action-test:
+    name: test Setup Kubelogin action
     runs-on: [ 'ubuntu-latest' ]
     strategy:
       matrix:
